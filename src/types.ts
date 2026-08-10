@@ -1,0 +1,118 @@
+export type UserRole = 'admin' | 'operator';
+
+export type UserStatus = 'active' | 'inactive';
+
+export interface User {
+  id: string;
+  username: string;
+  fullName: string;
+  email: string;
+  role: UserRole;
+  passcode: string; // 4-digit numeric code for fast tablet login
+  avatarUrl?: string;
+  assignedBooth?: string;
+  status: UserStatus;
+  createdAt: string;
+  lastLogin?: string;
+}
+
+export type PaperWidth = '58mm' | '80mm';
+
+export type ReceiptStyle =
+  | 'classic_thermal'
+  | 'magazine_cover'
+  | 'magazine_lookbook'
+  | 'korean_life4cuts'
+  | 'korean_cafe'
+  | 'y2k_korean';
+
+export interface StoreSettings {
+  storeName: string;
+  slogan: string;
+  address: string;
+  phone: string;
+  instagram: string;
+  tiktok: string;
+  logoText: string;
+  headerNote: string;
+  footerNote: string;
+  barcodePayload: string;
+  qrPayload: string;
+  pricePerPrint: number;
+  currencySymbol: string;
+  paperWidth: PaperWidth;
+  ditherStrength: number; // 1 to 10
+  autoResetSeconds: number; // 30, 60, 90, 120 or 0 (disabled)
+  kioskPin: string; // PIN to exit kiosk mode to admin
+  soundEnabled: boolean;
+  paperTearStyle: 'zigzag' | 'torn' | 'straight';
+  enableAiVibeCheck: boolean;
+  defaultFilter: ThermalFilter;
+  defaultReceiptStyle?: ReceiptStyle;
+  customPresetItems: { name: string; price: string }[];
+  welcomePromoTitle?: string;
+  welcomePromoSubtitle?: string;
+  welcomePromoBadge?: string;
+  enableAutoIdleWelcome?: boolean;
+  idleSeconds?: number;
+}
+
+export type ThermalFilter =
+  | 'monochrome'
+  | 'halftone'
+  | 'cyberpunk'
+  | 'high_contrast'
+  | 'vintage'
+  | 'inverted'
+  | 'soft_grain';
+
+export type LayoutMode =
+  | 'strip_1'
+  | 'strip_2'
+  | 'strip_3'
+  | 'strip_4'
+  | 'grid_2x2'
+  | 'single_polaroid'
+  | 'receipt_mini';
+
+export interface Sticker {
+  id: string;
+  label: string;
+  category: 'stamp' | 'badge' | 'doodle' | 'rating';
+  iconName?: string;
+  color?: string;
+}
+
+export interface ReceiptItem {
+  name: string;
+  price: string;
+}
+
+export interface PhotoSession {
+  id: string;
+  sessionCode: string; // e.g. RCPT-2026-8910
+  timestamp: string;
+  userId: string;
+  userName: string;
+  photos: string[]; // data URLs
+  finalReceiptImage: string; // rendered canvas data URL
+  layout: LayoutMode;
+  receiptStyle?: ReceiptStyle;
+  filter: ThermalFilter;
+  items: ReceiptItem[];
+  totalAmount: string;
+  customerName?: string;
+  printsCount: number;
+  vibeRating?: string;
+  motto?: string;
+  selectedStickers: string[]; // sticker labels
+}
+
+export type ActiveTab =
+  | 'welcome'
+  | 'kiosk'
+  | 'editor'
+  | 'user_dashboard'
+  | 'admin_dashboard'
+  | 'gallery'
+  | 'settings';

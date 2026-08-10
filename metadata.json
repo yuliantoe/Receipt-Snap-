@@ -1,0 +1,6 @@
+{
+  "name": "Receipt Snap - Thermal Photobooth",
+  "description": "Modern Gen-Z thermal receipt photobooth app for tablets with live camera booth, thermal receipt customization, admin control dashboard, and user management.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

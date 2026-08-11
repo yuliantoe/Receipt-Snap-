@@ -51,7 +51,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   }, [promoCards.length]);
 
   return (
-    <div className="relative min-h-[calc(100vh-80px)] w-full bg-[#FAF9F6] text-[#2D2A26] font-sans flex flex-col justify-between p-4 sm:p-6 lg:p-8 rounded-3xl border border-[#E5E0D5] shadow-sm overflow-hidden select-none">
+    <div className="fixed inset-0 z-50 w-screen h-screen min-h-screen bg-[#FAF9F6] text-[#2D2A26] font-sans flex flex-col justify-between p-4 sm:p-6 lg:p-8 overflow-y-auto select-none">
       
       {/* Subtle Background Pattern & Soft Glows */}
       <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(#DED9CF_1px,transparent_1px)] [background-size:16px_16px]"></div>

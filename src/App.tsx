@@ -161,21 +161,23 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white font-sans antialiased selection:bg-amber-400 selection:text-neutral-950 flex flex-col">
-      {/* Top Navbar */}
-      <Navbar
-        currentTab={activeTab}
-        setTab={(tab) => {
-          if (tab === 'admin_dashboard') {
-            handleRequestAdmin();
-          } else {
-            setActiveTab(tab);
-          }
-        }}
-        currentUser={currentUserState}
-        settings={settings}
-        onRequestAdmin={handleRequestAdmin}
-        onSwitchUser={() => setShowUserSwitchModal(true)}
-      />
+      {/* Top Navbar (Hidden on Welcome Screen for Fullscreen Kiosk Experience) */}
+      {activeTab !== 'welcome' && (
+        <Navbar
+          currentTab={activeTab}
+          setTab={(tab) => {
+            if (tab === 'admin_dashboard') {
+              handleRequestAdmin();
+            } else {
+              setActiveTab(tab);
+            }
+          }}
+          currentUser={currentUserState}
+          settings={settings}
+          onRequestAdmin={handleRequestAdmin}
+          onSwitchUser={() => setShowUserSwitchModal(true)}
+        />
+      )}
 
       {/* Main View Area */}
       <main className="flex-1 py-4 px-2 sm:px-4">
@@ -229,11 +231,13 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-neutral-900 bg-neutral-950 py-3 text-center text-neutral-500 text-xs font-mono">
-        <p>
-          RECEIPT SNAP PHOTOBOOTH © 2026 | Tablet Optimized Thermal Receipt Kiosk | Gen-Z & Millennial Aesthetic
-        </p>
-      </footer>
+      {activeTab !== 'welcome' && (
+        <footer className="border-t border-neutral-900 bg-neutral-950 py-3 text-center text-neutral-500 text-xs font-mono">
+          <p>
+            RECEIPT SNAP PHOTOBOOTH © 2026 | Tablet Optimized Thermal Receipt Kiosk | Gen-Z & Millennial Aesthetic
+          </p>
+        </footer>
+      )}
 
       {/* Modals */}
       <PinModal

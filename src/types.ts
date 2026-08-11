@@ -26,6 +26,13 @@ export type ReceiptStyle =
   | 'korean_cafe'
   | 'y2k_korean';
 
+export type WelcomeCoverTheme =
+  | 'warm_minimal'
+  | 'korean_seoul'
+  | 'cyber_y2k'
+  | 'magazine_glam'
+  | 'retro_arcade';
+
 export interface StoreSettings {
   storeName: string;
   slogan: string;
@@ -53,6 +60,7 @@ export interface StoreSettings {
   welcomePromoTitle?: string;
   welcomePromoSubtitle?: string;
   welcomePromoBadge?: string;
+  welcomeCoverTheme?: WelcomeCoverTheme;
   enableAutoIdleWelcome?: boolean;
   idleSeconds?: number;
 }

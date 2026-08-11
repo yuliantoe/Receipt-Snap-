@@ -68,6 +68,7 @@ export const INITIAL_SETTINGS: StoreSettings = {
   welcomePromoTitle: "CETAK STRUK FOTO ESTETIK 📸",
   welcomePromoSubtitle: "Abadikan Momen Manismu dalam Struk Thermal Vintage. Hasil Instan & Siap Dipajang!",
   welcomePromoBadge: "PROMO MAHASISWA & COMMUNITY DISKON 20%",
+  welcomeCoverTheme: "warm_minimal",
   enableAutoIdleWelcome: true,
   idleSeconds: 45,
   customPresetItems: [

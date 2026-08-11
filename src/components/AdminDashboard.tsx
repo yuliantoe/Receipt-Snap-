@@ -652,24 +652,99 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               </div>
           </div>
 
-          {/* Section 2B: Promo Welcome Screen Configuration */}
-          <div className="bg-neutral-900 border-2 border-neutral-800 rounded-2xl p-6 shadow-lg space-y-4">
-            <h3 className="font-bold text-sm text-amber-400 border-b border-neutral-800 pb-3 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>PENGATURAN TAMPILAN WELCOME SCREEN & PROMOSI</span>
-            </h3>
+            {/* Section 2B: Promo Welcome Screen Configuration */}
+            <div className="bg-neutral-900 border-2 border-neutral-800 rounded-2xl p-6 shadow-lg space-y-4">
+              <h3 className="font-bold text-sm text-amber-400 border-b border-neutral-800 pb-3 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                <span>PENGATURAN TAMPILAN WELCOME SCREEN & PROMOSI</span>
+              </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              {/* Cover Theme Selection */}
               <div>
-                <label className="block text-neutral-400 mb-1">JUDUL PROMO UTAMA:</label>
-                <input
-                  type="text"
-                  value={storeForm.welcomePromoTitle || ''}
-                  onChange={(e) => setStoreForm({ ...storeForm, welcomePromoTitle: e.target.value })}
-                  placeholder="CETAK STRUK FOTO ESTETIK 📸"
-                  className="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400"
-                />
+                <label className="block text-neutral-300 font-bold mb-2 text-xs flex items-center justify-between">
+                  <span>PILIH DESAIN COVER TAMPILAN UTAMA (WELCOME SCREEN):</span>
+                  <span className="text-[10px] text-amber-400 font-mono">5 TEMA COVER</span>
+                </label>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  {[
+                    {
+                      id: 'warm_minimal',
+                      label: 'Vintage Thermal Cream',
+                      badge: 'CLASSIC 📜',
+                      desc: 'Kertas cream warm, font serif & charcoal estetik',
+                      bg: 'bg-[#FAF9F6] text-[#2D2A26] border-[#DED9CF]',
+                      icon: '📜'
+                    },
+                    {
+                      id: 'korean_seoul',
+                      label: 'Korean Soft Pink (인생네컷)',
+                      badge: 'SEOUL 🌸',
+                      desc: 'Photobooth pastel pink Korea & Hangul vibes',
+                      bg: 'bg-[#FFF5F7] text-[#D6336C] border-[#FFE4E8]',
+                      icon: '🌸'
+                    },
+                    {
+                      id: 'cyber_y2k',
+                      label: 'Cyber Y2K Glitch',
+                      badge: 'NEON 👾',
+                      desc: 'Dark theme cyberpunk, aksen cyan & magenta',
+                      bg: 'bg-[#0B0C10] text-[#00F0FF] border-[#00F0FF]/40',
+                      icon: '👾'
+                    },
+                    {
+                      id: 'magazine_glam',
+                      label: 'Vogue Magazine Cover',
+                      badge: 'LUXURY 📰',
+                      desc: 'Hitam emas mewah ala majalah fashion tinggi',
+                      bg: 'bg-[#121212] text-[#D4AF37] border-[#D4AF37]/50',
+                      icon: '📰'
+                    },
+                    {
+                      id: 'retro_arcade',
+                      label: '80s Retro Arcade',
+                      badge: 'PIXEL 🎮',
+                      desc: 'Kiosk arcade retro 80an dengan warna ungu/kuning',
+                      bg: 'bg-[#1A0B2E] text-[#FFE600] border-[#8B5CF6]',
+                      icon: '🎮'
+                    }
+                  ].map((th) => (
+                    <button
+                      key={th.id}
+                      type="button"
+                      onClick={() => setStoreForm({ ...storeForm, welcomeCoverTheme: th.id as any })}
+                      className={`p-3 rounded-xl border text-left font-mono transition flex flex-col justify-between ${
+                        (storeForm.welcomeCoverTheme || 'warm_minimal') === th.id
+                          ? 'bg-amber-400/10 border-amber-400 text-amber-300 shadow-[0_0_12px_rgba(251,191,36,0.25)] ring-1 ring-amber-400'
+                          : 'bg-neutral-950 border-neutral-800 text-neutral-400 hover:border-neutral-700'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-lg">{th.icon}</span>
+                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${th.bg}`}>
+                          {th.badge}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-xs text-white leading-snug">{th.label}</p>
+                        <p className="text-[10px] text-neutral-500 mt-0.5 line-clamp-1">{th.desc}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-2 border-t border-neutral-800">
+                <div>
+                  <label className="block text-neutral-400 mb-1">JUDUL PROMO UTAMA:</label>
+                  <input
+                    type="text"
+                    value={storeForm.welcomePromoTitle || ''}
+                    onChange={(e) => setStoreForm({ ...storeForm, welcomePromoTitle: e.target.value })}
+                    placeholder="CETAK STRUK FOTO ESTETIK 📸"
+                    className="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400"
+                  />
+                </div>
 
               <div>
                 <label className="block text-neutral-400 mb-1">LABEL BADGE PROMO:</label>

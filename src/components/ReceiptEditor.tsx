@@ -216,17 +216,54 @@ export const ReceiptEditor: React.FC<ReceiptEditorProps> = ({
             </div>
           </div>
 
-          {/* Section 1B: Receipt Template Style Picker (Magazine & Korean Styles) */}
-          <div className="bg-neutral-900 border-2 border-neutral-800 rounded-2xl p-5 shadow-lg">
-            <div className="flex items-center justify-between mb-3">
+          {/* Section 1B: Receipt Template Style Picker (Magazine, Korean & Custom Templates) */}
+          <div className="bg-neutral-900 border-2 border-neutral-800 rounded-2xl p-5 shadow-lg space-y-3">
+            <div className="flex items-center justify-between">
               <span className="font-mono font-bold text-sm text-amber-400 flex items-center gap-2">
                 <LayoutTemplate className="w-4 h-4" />
-                <span>PILIH DESAIN TEMPLATE STRUK (MAGAZINE & KOREAN)</span>
+                <span>PILIH DESAIN TEMPLATE STRUK</span>
               </span>
-              <span className="text-[10px] font-mono text-neutral-400">6 GAYA DESAIN</span>
+              <span className="text-[10px] font-mono text-neutral-400">
+                {styleOptions.length + (settings.customReceiptTemplates?.length || 0)} TEMPLATE
+              </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            {/* Custom Operator Created Templates */}
+            {settings.customReceiptTemplates && settings.customReceiptTemplates.length > 0 && (
+              <div className="space-y-1.5 pt-1">
+                <p className="text-[11px] font-mono text-amber-300 font-bold flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-amber-400" />
+                  <span>TEMPLATE DESAIN CUSTOM OPERATOR:</span>
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  {settings.customReceiptTemplates.map((ct) => (
+                    <button
+                      key={ct.id}
+                      onClick={() => {
+                        setReceiptStyle(ct.baseStyle);
+                        if (ct.defaultMotto) setMotto(ct.defaultMotto);
+                        if (ct.defaultVibeRating) setVibeRating(ct.defaultVibeRating);
+                      }}
+                      className="p-3 rounded-xl border border-amber-500/40 bg-amber-950/20 hover:bg-amber-950/40 text-left font-mono transition flex flex-col justify-between"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-lg">{ct.icon || '🎨'}</span>
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-400 text-neutral-950">
+                          {ct.badge}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-bold text-xs text-white leading-snug">{ct.name}</p>
+                        <p className="text-[10px] text-amber-300/70 mt-0.5 line-clamp-1">{ct.description || ct.headerNote}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Standard Base Templates */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
               {styleOptions.map((st) => (
                 <button
                   key={st.id}

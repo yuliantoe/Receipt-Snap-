@@ -2,6 +2,34 @@ export type UserRole = 'admin' | 'operator';
 
 export type UserStatus = 'active' | 'inactive';
 
+export type SubscriptionPlan = 'weekly' | 'monthly' | 'yearly' | 'none';
+
+export type SubscriptionStatus = 'active' | 'expired' | 'trial' | 'cancelled';
+
+export interface UserSubscription {
+  plan: SubscriptionPlan;
+  status: SubscriptionStatus;
+  startDate: string;
+  endDate: string;
+  autoRenew?: boolean;
+  pricePaid?: number;
+  maxPrintsPerDay?: number;
+  notes?: string;
+}
+
+export interface SubscriptionPlanConfig {
+  id: SubscriptionPlan;
+  name: string;
+  price: number;
+  billingCycle: 'mingguan' | 'bulanan' | 'tahunan';
+  durationDays: number;
+  maxPrintsPerDay: number;
+  features: string[];
+  isPopular?: boolean;
+  isActive: boolean;
+  badge: string;
+}
+
 export interface User {
   id: string;
   username: string;
@@ -14,6 +42,7 @@ export interface User {
   status: UserStatus;
   createdAt: string;
   lastLogin?: string;
+  subscription?: UserSubscription;
 }
 
 export type PaperWidth = '58mm' | '80mm';
@@ -32,6 +61,20 @@ export type WelcomeCoverTheme =
   | 'cyber_y2k'
   | 'magazine_glam'
   | 'retro_arcade';
+
+export interface CustomReceiptTemplate {
+  id: string;
+  name: string;
+  badge: string;
+  description?: string;
+  baseStyle: ReceiptStyle;
+  headerNote?: string;
+  footerNote?: string;
+  defaultMotto?: string;
+  defaultVibeRating?: string;
+  customItems?: ReceiptItem[];
+  icon?: string;
+}
 
 export interface StoreSettings {
   storeName: string;
@@ -57,6 +100,8 @@ export interface StoreSettings {
   defaultFilter: ThermalFilter;
   defaultReceiptStyle?: ReceiptStyle;
   customPresetItems: { name: string; price: string }[];
+  customReceiptTemplates?: CustomReceiptTemplate[];
+  subscriptionPlansConfig?: SubscriptionPlanConfig[];
   welcomePromoTitle?: string;
   welcomePromoSubtitle?: string;
   welcomePromoBadge?: string;

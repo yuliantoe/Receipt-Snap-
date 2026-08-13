@@ -12,7 +12,17 @@ export const INITIAL_USERS: User[] = [
     assignedBooth: 'Booth #1 (Tablet Pro)',
     status: 'active',
     createdAt: '2026-01-15T08:00:00.000Z',
-    lastLogin: '2026-08-10T12:00:00.000Z'
+    lastLogin: '2026-08-10T12:00:00.000Z',
+    subscription: {
+      plan: 'yearly',
+      status: 'active',
+      startDate: '2026-01-01T00:00:00.000Z',
+      endDate: '2026-12-31T23:59:59.000Z',
+      autoRenew: true,
+      pricePaid: 4500000,
+      maxPrintsPerDay: 1000,
+      notes: 'Paket Tahunan Enterprise Owner'
+    }
   },
   {
     id: 'usr_op1',
@@ -25,7 +35,17 @@ export const INITIAL_USERS: User[] = [
     assignedBooth: 'Booth #1 (Tablet Main)',
     status: 'active',
     createdAt: '2026-02-01T10:30:00.000Z',
-    lastLogin: '2026-08-10T10:15:00.000Z'
+    lastLogin: '2026-08-10T10:15:00.000Z',
+    subscription: {
+      plan: 'monthly',
+      status: 'active',
+      startDate: '2026-08-01T00:00:00.000Z',
+      endDate: '2026-08-31T23:59:59.000Z',
+      autoRenew: true,
+      pricePaid: 450000,
+      maxPrintsPerDay: 300,
+      notes: 'Langganan Bulanan Booth Central Park'
+    }
   },
   {
     id: 'usr_op2',
@@ -38,7 +58,17 @@ export const INITIAL_USERS: User[] = [
     assignedBooth: 'Booth #2 (Pop-up Event)',
     status: 'active',
     createdAt: '2026-03-10T14:20:00.000Z',
-    lastLogin: '2026-08-09T18:45:00.000Z'
+    lastLogin: '2026-08-09T18:45:00.000Z',
+    subscription: {
+      plan: 'weekly',
+      status: 'active',
+      startDate: '2026-08-08T00:00:00.000Z',
+      endDate: '2026-08-15T23:59:59.000Z',
+      autoRenew: false,
+      pricePaid: 150000,
+      maxPrintsPerDay: 100,
+      notes: 'Pop-up Event BKN Exhibition 7 Hari'
+    }
   }
 ];
 
@@ -76,6 +106,97 @@ export const INITIAL_SETTINGS: StoreSettings = {
     { name: "2x Unlimited Aura Points", price: "Rp 15.000" },
     { name: "1x Thermal Print Paper 80mm", price: "Rp 10.000" },
     { name: "1x Vibe Tax (100% Worth It)", price: "Rp 0" }
+  ],
+  customReceiptTemplates: [
+    {
+      id: "tmpl_seoul_cafe",
+      name: "Seongsu Cafe Aesthetic",
+      badge: "CAFE ☕",
+      description: "Desain ala struk cafe estetik daerah Seongsu / Hongdae Seoul",
+      baseStyle: "korean_cafe",
+      headerNote: "--- SEONGSU COFFEE & PHOTO STUDIO ---",
+      footerNote: "THANK YOU FOR VISITING! SEE YOU AGAIN ★",
+      defaultMotto: "Warm Coffee & Precious Memories ☕",
+      defaultVibeRating: "CAFE AESTHETIC 100%",
+      icon: "☕"
+    },
+    {
+      id: "tmpl_y2k_concert",
+      name: "VIP Concert Backstage Pass",
+      badge: "CONCERT 🎟️",
+      description: "Desain struk tiket konser & VIP pass festival musik",
+      baseStyle: "y2k_korean",
+      headerNote: "★ LIVE AT JAKARTA STADIUM 2026 ★",
+      footerNote: "KEEP THIS STRIP FOR AFTERPARTY ENTRY",
+      defaultMotto: "VIP Front Row Energy ★★★★★",
+      defaultVibeRating: "9999 CONCERT AURA",
+      icon: "🎟️"
+    },
+    {
+      id: "tmpl_wedding_memory",
+      name: "Wedding & Anniversary Edition",
+      badge: "WEDDING 💍",
+      description: "Desain romantis untuk pesta pernikahan & anniversary",
+      baseStyle: "korean_life4cuts",
+      headerNote: "💕 HAPPY EVER AFTER - SPECIAL MOMENTS 💕",
+      footerNote: "THANK YOU FOR CELEBRATING WITH US!",
+      defaultMotto: "Eternal Love & Sweet Memories Ring 💍",
+      defaultVibeRating: "SOULMATE MATCH 100%",
+      icon: "💍"
+    }
+  ],
+  subscriptionPlansConfig: [
+    {
+      id: "weekly",
+      name: "Paket Mingguan (Weekly Kiosk)",
+      price: 150000,
+      billingCycle: "mingguan",
+      durationDays: 7,
+      maxPrintsPerDay: 100,
+      badge: "POP-UP EVENT ⚡",
+      features: [
+        "Akses Kiosk Photobooth 7 Hari",
+        "Batas Cetak 100 Foto/Hari",
+        "5 Tema Cover & Struk Custom",
+        "Ekspor Galeri Foto QRIS"
+      ],
+      isActive: true
+    },
+    {
+      id: "monthly",
+      name: "Paket Bulanan (Monthly Kiosk)",
+      price: 450000,
+      billingCycle: "bulanan",
+      durationDays: 30,
+      maxPrintsPerDay: 300,
+      isPopular: true,
+      badge: "BEST VALUE ⭐",
+      features: [
+        "Akses Kiosk Photobooth 30 Hari",
+        "Batas Cetak 300 Foto/Hari",
+        "Semua Template Struk & Cover Custom",
+        "Fitur AI Vibe Score Unlimited",
+        "Laporan Analytics & Penjualan"
+      ],
+      isActive: true
+    },
+    {
+      id: "yearly",
+      name: "Paket Tahunan (Enterprise Annual)",
+      price: 4500000,
+      billingCycle: "tahunan",
+      durationDays: 365,
+      maxPrintsPerDay: 1000,
+      badge: "UNLIMITED VIP 👑",
+      features: [
+        "Akses Kiosk Photobooth 365 Hari",
+        "Batas Cetak 1,000 Foto/Hari",
+        "Prioritas Support & Custom Branding Logo",
+        "Multi-Booth Location Control",
+        "Hemat 2 Bulan Biaya Langganan"
+      ],
+      isActive: true
+    }
   ]
 };
 
